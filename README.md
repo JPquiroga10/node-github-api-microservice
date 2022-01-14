@@ -9,11 +9,11 @@
 
 ### FetchPullRequests (GET)
 
-FetchPullRequests is used to retrieve all open pull request for a given repository url. The url should be passed as query string parameter. It will extract the user and repo name to get all pull request data from github as well as the total number of commits for each pull request. Each Payload returns should have the following attributes:
-- id
-- user (the user that created the pull request)
-- title
-- totalCommits
+FetchPullRequests is used to retrieve all open pull request for a given repository url. The url should be passed as query string parameter. It will extract the user and repo name to get all pull request data from github as well as the total number of commits for each pull request. Each payload returned should have the following attributes:
+- id - number
+- user (the user that created the pull request) - string
+- title - string
+- totalCommits - number
 
 ### FetchBranches (GET)
 
