@@ -1,0 +1,20 @@
+
+service: node-code-challenge
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+  environment:
+    githubUrl: https://api.github.com/repos
+
+
+functions:
+  fetchPullRequests:
+    handler: src/handlers/index.fetch
+    events:
+      - http:
+          path: /open-prs
+          method: GET
