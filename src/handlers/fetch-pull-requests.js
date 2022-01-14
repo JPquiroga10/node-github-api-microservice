@@ -18,7 +18,7 @@ module.exports.handler = async (request) => {
       })
     }
   } catch (error) {
-    console.log(error)
+    console.log('The ERRRrror: ', error)
     return {
       statusCode: error.response.status || 500,
       body: JSON.stringify({

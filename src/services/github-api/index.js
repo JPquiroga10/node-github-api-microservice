@@ -31,4 +31,18 @@ const fetchCommits = async (commitsUrl) => {
   }
 }
 
-module.exports = { fetchPRs, fetchCommits }
+const fetchBranches = async ({ user, repo }) => {
+  try {
+    const url = [GithubApiUrl, user, repo, 'branches'].join('/')
+    const { data } = await axios.get(url)
+    return data
+  } catch (error) {
+    throw error
+  }
+}
+
+module.exports = { 
+  fetchPRs,
+  fetchCommits,
+  fetchBranches
+}

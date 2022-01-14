@@ -6,7 +6,7 @@ const GithubApi = require('../github-api')
  * @param {array} prData - open pull requests data to map
  * @returns {array} pull request payloads
  */
-module.exports.mapPullRequestData = (prData) => {
+const mapPullRequestData = (prData) => {
   return Promise.all(
     map(mapPullRequest, prData)
   )
@@ -14,7 +14,7 @@ module.exports.mapPullRequestData = (prData) => {
 
 const mapPullRequest = async ({ id, user, title, commits_url }) => {
   const totalCommits = await GithubApi.fetchCommits(commits_url)
-  return this.buildPayload(id, user, title, totalCommits)
+  return buildPRPayload(id, user, title, totalCommits)
 }
 
 /**
@@ -25,9 +25,17 @@ const mapPullRequest = async ({ id, user, title, commits_url }) => {
  * @param {number} totalCommits - total number of commits on the provided pull request
  * @returns {object} formatted pull request payload
  */
-module.exports.buildPayload = (id, user, title, totalCommits) => ({
+const buildPRPayload = (id, user, title, totalCommits) => ({
   id,
   user: user.login,
   title,
   totalCommits
 })
+
+const mapBranchName = (branch) => branch.name
+
+module.exports = {
+  mapPullRequestData,
+  buildPRPayload,
+  mapBranchName,
+}

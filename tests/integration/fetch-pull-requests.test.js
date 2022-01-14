@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const { handler } = require('../../src/handlers/fetch')
+const { handler } = require('../../src/handlers/fetch-pull-requests')
 const request = require('../__fixtures__/fetch-http-request')
 
 describe('Fetch Pull Requests handler: ', () => {
@@ -32,21 +32,5 @@ describe('Fetch Pull Requests handler: ', () => {
         expect(prPayload.totalCommits).to.not.be.undefined
         expect(prPayload.totalCommits).to.be.a('number')
       })
-    })
-
-    it('should return a 404 error code if the url is not an existing repo.', async () => {
-      const request = {
-        queryStringParameters: {
-          url: 'https://github.com/colincks/zod'
-        }
-      }
-      const errorResponse = await handler(request)
-      const { message: errorMessage } = JSON.parse(errorResponse.body)
-
-      expect(errorResponse.statusCode).to.not.be.undefined
-      expect(errorResponse.statusCode).to.equal()
-
-      expect(errorMessage).to.not.be.undefined
-      expect(errorMessage).to.equal()
     })
 })

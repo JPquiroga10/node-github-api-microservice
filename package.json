@@ -7,7 +7,8 @@
     "deploy": "sls deploy --force",
     "test": "NODE_ENV=test ./node_modules/.bin/env-cmd ./node_modules/.bin/mocha",
     "test:unit": "npm run test -- ./tests/unit",
-    "test:integration": "npm run test -- ./tests/integration"
+    "test:integration": "npm run test -- ./tests/integration",
+    "test:e2e": "npm run test -- ./tests/e2e"
   },
   "author": "",
   "license": "ISC",

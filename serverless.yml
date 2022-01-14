@@ -13,8 +13,15 @@ provider:
 
 functions:
   fetchPullRequests:
-    handler: src/handlers/fetch.handler
+    handler: src/handlers/fetch-pull-requests.handler
     events:
       - http:
           path: /open-prs
+          method: GET
+
+  fetchBranches:
+    handler: src/handlers/fetch-branches.handler
+    events:
+      - http:
+          path: /branches
           method: GET
