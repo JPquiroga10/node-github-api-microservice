@@ -4,6 +4,7 @@ const ResponseHelper = require('../services/http/response')
 const GithubApi = require('../services/github-api')
 
 /**
+ * Uses the url provided in the request to return all open pull request for the given repository.
  * 
  * @param {object} request 
  * @returns {object} httpResponse { statusCode, body: { pullRequests } }
@@ -18,9 +19,8 @@ module.exports.handler = async (request) => {
       })
     }
   } catch (error) {
-    console.log('The ERRRrror: ', error)
     return {
-      statusCode: error.response.status || 500,
+      statusCode: error.response && error.response.status || 500,
       body: JSON.stringify({
         message: error.message || error.errorMessage
       })

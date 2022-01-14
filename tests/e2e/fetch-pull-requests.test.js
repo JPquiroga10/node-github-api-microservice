@@ -1,17 +1,9 @@
 const { expect } = require('chai')
-const axios = require('axios')
-
-const fetchPRs = (url = 'https://github.com/colinhacks/zod') => {
-  return axios.get('https://5x2sp8me41.execute-api.us-east-1.amazonaws.com/dev/open-prs', {
-    params: {
-      url
-    }
-  })
-} 
+const HttpTestHelper = require('../services/http-helper')
 
 describe('Fetch Pull Requests GET Endpoint: ', () => {
     it('should extract the url from the request and return an array of all open pull requests with a total number of commits for each open prs.', async () => {
-      const { data, status } = await fetchPRs()
+      const { data, status } = await HttpTestHelper.fetch()
       const { pullRequests } = data
 
       expect(status).to.not.be.undefined
@@ -44,7 +36,7 @@ describe('Fetch Pull Requests GET Endpoint: ', () => {
     it('should return a 404 error code if the url is not an existing repo.', async () => {
       try {
         const url = 'https://github.com/colincks/zee'
-        await fetchPRs(url)
+        await HttpTestHelper.fetch(url)
       } catch (error) {
         const { status, data } = error.response
         expect(status).to.not.be.undefined

@@ -31,6 +31,12 @@ const fetchCommits = async (commitsUrl) => {
   }
 }
 
+/**
+ * 
+ * @param {string} user - the repo owners user name
+ * @param {string} repo - the repo name
+ * @returns {array} all branches for the provided user and repo name
+ */
 const fetchBranches = async ({ user, repo }) => {
   try {
     const url = [GithubApiUrl, user, repo, 'branches'].join('/')

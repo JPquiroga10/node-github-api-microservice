@@ -31,7 +31,7 @@ describe('Response Helper Service:', () => {
   describe('#buildPayload', () => {
     it('should build a new pull request payload with an id, user, title, and totalCommits.', () => {
       const { id, user, title } = prWithTotalCommits
-      const prPayload = ResponseHelper.buildPayload(id, user, title, 7)
+      const prPayload = ResponseHelper.buildPRPayload(id, user, title, 7)
       
       expect(prPayload).to.have.all.keys([
         'id',

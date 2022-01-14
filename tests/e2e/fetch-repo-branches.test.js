@@ -1,17 +1,9 @@
 const { expect } = require('chai')
-const axios = require('axios')
-
-const fetchBranches = (url = 'https://github.com/colinhacks/zod') => {
-  return axios.get('https://5x2sp8me41.execute-api.us-east-1.amazonaws.com/dev/branches', {
-    params: {
-      url
-    }
-  })
-} 
+const HttpTestHelper = require('../services/http-helper')
 
 describe('Fetch All Branches GET Endpoint: ', () => {
     it('should extract the url from the request and return an array of branch names for the given repo.', async () => {
-      const { data, status } = await fetchBranches()
+      const { data, status } = await HttpTestHelper.fetch('https://github.com/colinhacks/zod', 'branches')
       const { branches } = data
 
       expect(status).to.not.be.undefined
