@@ -16,6 +16,7 @@ const mapPullRequest = async ({ id, user, title, commits_url }) => {
   const totalCommits = await GithubApi.fetchCommits(commits_url)
   return this.buildPayload(id, user, title, totalCommits)
 }
+
 /**
  * 
  * @param {number} id - pull request id
