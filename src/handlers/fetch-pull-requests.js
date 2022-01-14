@@ -8,7 +8,7 @@ const GithubApi = require('../services/github-api')
  * @param {object} request 
  * @returns {object} httpResponse { statusCode, body: { pullRequests } }
  */
-module.exports.fetch = async (request) => {
+module.exports.handler = async (request) => {
   try {
     const pullRequests = await fetchOpenPRs(request)
     return {
@@ -18,8 +18,9 @@ module.exports.fetch = async (request) => {
       })
     }
   } catch (error) {
+    console.log('The ERRRrror: ', error)
     return {
-      statusCode: 500 || error.response.status,
+      statusCode: error.response.status || 500,
       body: JSON.stringify({
         message: error.message || error.errorMessage
       })

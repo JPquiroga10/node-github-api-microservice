@@ -8,13 +8,20 @@ provider:
   runtime: nodejs12.x
 
   environment:
-    githubUrl: https://api.github.com/repos
+    githubUrl: 'https://api.github.com/repos'
 
 
 functions:
   fetchPullRequests:
-    handler: src/handlers/index.fetch
+    handler: src/handlers/fetch-pull-requests.handler
     events:
       - http:
           path: /open-prs
+          method: GET
+
+  fetchBranches:
+    handler: src/handlers/fetch-branches.handler
+    events:
+      - http:
+          path: /branches
           method: GET
